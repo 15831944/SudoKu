@@ -1066,6 +1066,10 @@ bool CsudokuDlg::CONTROLISNULL(int nRow, int nCol)
 	return true;
 }
 
+void CsudokuDlg::ForbiddenControl()
+{
+}
+
 void CsudokuDlg::OnBnClickedOk()
 {
 	// TODO:  在此添加控件通知处理程序代码
@@ -1161,38 +1165,40 @@ void CsudokuDlg::OnBnClickedOk()
 	data[8][7] = ConverStr2NUM(m_s_9_8);
 	data[8][8] = ConverStr2NUM(m_s_9_9);
 
-	for (int i = 0; i < 9;i++)
+// 	for (int i = 0; i < 9;i++)
+// 	{
+// 		vector<int> vecRow = m_Sudo[i];
+// 		for (int j = 0; j < 9;j++)
+// 		{
+// 			int temp = vecRow[j];
+// 			int tempCustom = data[i][j];
+// 			if (temp!=tempCustom)
+// 			{
+// 				CString sPrompt;
+// 				sPrompt.Format(_T("row: %d ; col: %d ; 出错"), i, j);
+// 				AfxMessageBox(sPrompt);
+// 				return;
+// 			}
+// 		}
+// 	}
+
+	CSudokuVerify verify(data);
+	if (verify.VerifyData())
 	{
-		vector<int> vecRow = m_Sudo[i];
-		for (int j = 0; j < 9;j++)
-		{
-			int temp = vecRow[j];
-			int tempCustom = data[i][j];
-			if (temp!=tempCustom)
-			{
-				CString sPrompt;
-				sPrompt.Format(_T("row: %d ; col: %d ; 出错"), i, j);
-				AfxMessageBox(sPrompt);
-				return;
-			}
-		}
 	}
+	else
+	{
+		AfxMessageBox(_T("失败"));
+		return;
+	}
+
 	end_time = GetTickCount();
 	auto time = end_time - start_time;
 	int useTime = time / 1000;
 	CString sTime;
 	sTime.Format(_T("通过难度：%s 共计用时%d"),m_sLv, useTime);
 	AfxMessageBox(sTime);
-// 	CSudokuVerify verify(data);
-// 	if (verify.VerifyData())
-// 	{
-// 		AfxMessageBox(_T("通过"));
-// 	}
-// 	else
-// 	{
-// 		AfxMessageBox(_T("失败"));
-// 
-// 	}
+
 }
 
 #include <random>

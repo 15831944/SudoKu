@@ -126,7 +126,7 @@ private:
 	CString m_sLv;
 	void SETCONTROL(int nRow, int nCol, CString strValue);
 	bool CONTROLISNULL(int nRow, int nCol);
-
+	void ForbiddenControl();
 	DWORD start_time ;
 	DWORD end_time;
 	//Êý¾Ý´æ´¢

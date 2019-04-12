@@ -6,7 +6,7 @@ using namespace std;
 class CSudokuVerify
 {
 public:
-	CSudokuVerify(int temp[9][9]);
+	CSudokuVerify(int data[9][9]);
 	
 public:
 	bool VerifyData();

@@ -6,9 +6,16 @@
 
 
 
-CSudokuVerify::CSudokuVerify(int temp[9][9])
+CSudokuVerify::CSudokuVerify(int data[9][9])
 {
-	m_data[9][9] = temp[9][9];
+
+	for (int i = 0; i < 9;i++)
+	{
+		for (int j = 0; j < 9;j++)
+		{
+			m_data[i][j] = data[i][j];
+		}
+	}
 }
 
 bool CSudokuVerify::VerifyData()
@@ -38,7 +45,7 @@ bool CSudokuVerify::VerifyRow()
 			{
 				return false;
 			}
-			tempVerify[a] = 1;
+			tempVerify[a-1] = 1;
 
 		}
 		for (auto a:tempVerify)
@@ -65,7 +72,7 @@ bool CSudokuVerify::VerifyCol()
 			{
 				return false;
 			}
-			tempVerify[a] = 1;
+			tempVerify[a-1] = 1;
 
 		}
 		for (auto a : tempVerify)
@@ -98,7 +105,7 @@ bool CSudokuVerify::VerifyRectangle()
 				{
 					return false;
 				}
-				tempVerify[a] = 1;
+				tempVerify[a-1] = 1;
 
 			}
 			for (auto a : tempVerify)
